@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Measurementdate:</strong>
+  <%= @body_measurement.measurementDate %>
+</p>
+
+<p>
+  <strong>Occurrence:</strong>
+  <%= @body_measurement.occurrence %>
+</p>
+
+<p>
+  <strong>Weight:</strong>
+  <%= @body_measurement.weight %>
+</p>
+
+<p>
+  <strong>Bodyfat:</strong>
+  <%= @body_measurement.bodyFat %>
+</p>
+
+<%= link_to 'Edit', edit_body_measurement_path(@body_measurement) %> |
+<%= link_to 'Back', body_measurements_path %>

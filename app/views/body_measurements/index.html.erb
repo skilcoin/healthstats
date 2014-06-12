@@ -1,0 +1,33 @@
+<h1>Listing body_measurements</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Measurementdate</th>
+      <th>Occurrence</th>
+      <th>Weight</th>
+      <th>Bodyfat</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @body_measurements.each do |body_measurement| %>
+      <tr>
+        <td><%= body_measurement.measurementDate %></td>
+        <td><%= body_measurement.occurrence %></td>
+        <td><%= body_measurement.weight %></td>
+        <td><%= body_measurement.bodyFat %></td>
+        <td><%= link_to 'Show', body_measurement %></td>
+        <td><%= link_to 'Edit', edit_body_measurement_path(body_measurement) %></td>
+        <td><%= link_to 'Destroy', body_measurement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Body measurement', new_body_measurement_path %>

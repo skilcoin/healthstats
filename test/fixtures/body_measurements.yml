@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  measurementDate: 2014-06-12
+  occurrence: 1
+  weight: 1.5
+  bodyFat: 1.5
+
+two:
+  measurementDate: 2014-06-12
+  occurrence: 1
+  weight: 1.5
+  bodyFat: 1.5

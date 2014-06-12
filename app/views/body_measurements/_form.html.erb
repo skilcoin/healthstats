@@ -1,0 +1,33 @@
+<%= form_for(@body_measurement) do |f| %>
+  <% if @body_measurement.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@body_measurement.errors.count, "error") %> prohibited this body_measurement from being saved:</h2>
+
+      <ul>
+      <% @body_measurement.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :measurementDate %><br>
+    <%= f.date_select :measurementDate %>
+  </div>
+  <div class="field">
+    <%= f.label :occurrence %><br>
+    <%= f.number_field :occurrence %>
+  </div>
+  <div class="field">
+    <%= f.label :weight %><br>
+    <%= f.text_field :weight %>
+  </div>
+  <div class="field">
+    <%= f.label :bodyFat %><br>
+    <%= f.text_field :bodyFat %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
