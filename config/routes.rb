@@ -1,4 +1,5 @@
 Healthstats::Application.routes.draw do
+  get "body_measurements/viz"
   resources :body_measurements
 
   # The priority is based upon order of creation: first created -> highest priority.
