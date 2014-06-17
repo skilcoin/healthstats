@@ -23,13 +23,20 @@ body {
   stroke-width: 1.5px;
 }
 
+.line2 {
+  fill: none;
+  stroke: green;
+  stroke-width: 1.5px;
+}
+
+
 </style>
 <body>
 <script src="http://d3js.org/d3.v3.js"></script>
 <script>
 
 var margin = {top: 20, right: 20, bottom: 30, left: 50},
-    width = 960 - margin.left - margin.right,
+    width = 930 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
 var parseDate = d3.time.format("%Y-%m-%d").parse;
@@ -37,20 +44,33 @@ var parseDate = d3.time.format("%Y-%m-%d").parse;
 var x = d3.time.scale()
     .range([0, width]);
 
-var y = d3.scale.linear()
+var yWeight = d3.scale.linear()
+    .range([height, 0]);
+
+var yBf = d3.scale.linear()
     .range([height, 0]);
 
 var xAxis = d3.svg.axis()
     .scale(x)
     .orient("bottom");
 
-var yAxis = d3.svg.axis()
-    .scale(y)
+var yAxisWeight = d3.svg.axis()
+    .scale(yWeight)
     .orient("left");
 
-var line = d3.svg.line()
+var yAxisBf = d3.svg.axis()
+    .scale(yBf)
+    .orient("right");
+
+
+var lineWeight = d3.svg.line()
     .x(function(d) { return x(d.measurementDate); })
-    .y(function(d) { return y(d.weight); });
+    .y(function(d) { return yWeight(d.weight); });
+
+var lineBf = d3.svg.line()
+    .x(function(d) { return x(d.measurementDate); })
+    .y(function(d) { return yBf(d.bodyFat); });
+
 
 var svg = d3.select("body").append("svg")
     .attr("width", width + margin.left + margin.right)
@@ -64,7 +84,9 @@ d3.json("../body_measurements.json", function(error, data) {
   });
 
   x.domain(d3.extent(data, function(d) { return d.measurementDate; }));
-  y.domain(d3.extent(data, function(d) { return d.weight; }));
+  yWeight.domain(d3.extent(data, function(d) { return d.weight; }));
+  yBf.domain(d3.extent(data, function(d) { return d.bodyFat; }));
+
 
   svg.append("g")
       .attr("class", "x axis")
@@ -73,7 +95,7 @@ d3.json("../body_measurements.json", function(error, data) {
 
   svg.append("g")
       .attr("class", "y axis")
-      .call(yAxis)
+      .call(yAxisWeight)
     .append("text")
       .attr("transform", "rotate(-90)")
       .attr("y", 6)
@@ -81,10 +103,29 @@ d3.json("../body_measurements.json", function(error, data) {
       .style("text-anchor", "end")
       .text("Weight");
 
+  svg.append("g")
+      .attr("class", "y axis axisRight")
+      .attr("transform","translate(" + (width + 0) + ",0)")
+      .call(yAxisBf)
+    .append("text")
+      .attr("transform", "rotate(90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .attr("x", 55)
+      .style("text-anchor", "end")
+      .text("Body Fat %");
+
+
   svg.append("path")
       .datum(data)
       .attr("class", "line")
-      .attr("d", line);
+      .attr("d", lineWeight);
+
+  svg.append("path")
+      .datum(data)
+      .attr("class", "line2")
+      .attr("d", lineBf);
+
 });
 
 </script>
