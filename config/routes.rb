@@ -1,4 +1,6 @@
 Healthstats::Application.routes.draw do
+  resources :running_measurements
+
   get "body_measurements/viz"
   resources :body_measurements
 

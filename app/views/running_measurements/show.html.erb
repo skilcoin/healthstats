@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Distance miles:</strong>
+  <%= @running_measurement.distance_miles %>
+</p>
+
+<p>
+  <strong>Duration seconds:</strong>
+  <%= @running_measurement.duration_seconds %>
+</p>
+
+<p>
+  <strong>Calories:</strong>
+  <%= @running_measurement.calories %>
+</p>
+
+<%= link_to 'Edit', edit_running_measurement_path(@running_measurement) %> |
+<%= link_to 'Back', running_measurements_path %>

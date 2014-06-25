@@ -1,0 +1,29 @@
+<%= form_for(@running_measurement) do |f| %>
+  <% if @running_measurement.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@running_measurement.errors.count, "error") %> prohibited this running_measurement from being saved:</h2>
+
+      <ul>
+      <% @running_measurement.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :distance_miles %><br>
+    <%= f.text_field :distance_miles %>
+  </div>
+  <div class="field">
+    <%= f.label :duration_seconds %><br>
+    <%= f.number_field :duration_seconds %>
+  </div>
+  <div class="field">
+    <%= f.label :calories %><br>
+    <%= f.text_field :calories %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

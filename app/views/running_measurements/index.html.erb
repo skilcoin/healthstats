@@ -1,0 +1,31 @@
+<h1>Listing running_measurements</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Distance miles</th>
+      <th>Duration seconds</th>
+      <th>Calories</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @running_measurements.each do |running_measurement| %>
+      <tr>
+        <td><%= running_measurement.distance_miles %></td>
+        <td><%= running_measurement.duration_seconds %></td>
+        <td><%= running_measurement.calories %></td>
+        <td><%= link_to 'Show', running_measurement %></td>
+        <td><%= link_to 'Edit', edit_running_measurement_path(running_measurement) %></td>
+        <td><%= link_to 'Destroy', running_measurement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Running measurement', new_running_measurement_path %>

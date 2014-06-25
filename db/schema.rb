@@ -11,13 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140612083953) do
+ActiveRecord::Schema.define(version: 20140625073732) do
 
   create_table "body_measurements", force: true do |t|
     t.date     "measurementDate"
     t.integer  "occurrence"
     t.float    "weight"
     t.float    "bodyFat"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "running_measurements", force: true do |t|
+    t.float    "distance_miles"
+    t.integer  "duration_seconds"
+    t.float    "calories"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
